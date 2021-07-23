@@ -14,9 +14,13 @@ jobs:
         with:
           python-version: '3.9'
       - name: Install all necessary packages
-        run: pip install requests beautifulsoup4 pandas
-      - name: Run the scraping script
+        run: pip install requests beautifulsoup4 pandas sendgrid
+      - name: Run the scraping script and send email
         run: python dictionaryscraper.py
+        env:
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+          FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
+          TO_EMAIL: ${{ secrets.TO_EMAIL }}
       - name: Commit and push if content changed
         run: |-
           git config user.name "Automated"
