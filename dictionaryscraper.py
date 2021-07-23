@@ -64,7 +64,7 @@ df
 # In[47]:
 
 
-df.to_csv("wordoftheday.csv, index=False")
+df.to_csv("wordoftheday.csv")
 
 message = Mail(
     from_email=os.environ.get('FROM_EMAIL'),
